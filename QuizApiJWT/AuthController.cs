@@ -13,8 +13,8 @@ namespace QuizApiJWT
     [ApiController]
     public class AuthController : Controller
     {
-        [HttpGet]
-        public IActionResult Login()
+        [HttpPost]
+        public IActionResult Login([FromBody] LoginRequest loginRequest)
         {
 
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
