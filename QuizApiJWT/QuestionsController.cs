@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuizApiJWT.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace QuizApiJWT
 {
@@ -21,7 +23,7 @@ namespace QuizApiJWT
         }
 
         // GET: api/Questions
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<Question>>> GetQuestions()
         {
           if (_context.Questions == null)
