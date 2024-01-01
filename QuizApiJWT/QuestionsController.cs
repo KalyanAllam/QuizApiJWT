@@ -51,71 +51,8 @@ namespace QuizApiJWT
             return question;
         }
 
-        // PUT: api/Questions/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutQuestion(int id, Question question)
-        {
-            if (id != question.Sno)
-            {
-                return BadRequest();
-            }
 
-            _context.Entry(question).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!QuestionExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Questions
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Question>> PostQuestion(Question question)
-        {
-          if (_context.Questions == null)
-          {
-              return Problem("Entity set 'JkoatuolContext.Questions'  is null.");
-          }
-            _context.Questions.Add(question);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetQuestion", new { id = question.Sno }, question);
-        }
-
-        // DELETE: api/Questions/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteQuestion(int id)
-        {
-            if (_context.Questions == null)
-            {
-                return NotFound();
-            }
-            var question = await _context.Questions.FindAsync(id);
-            if (question == null)
-            {
-                return NotFound();
-            }
-
-            _context.Questions.Remove(question);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
+        
 
         private bool QuestionExists(int id)
         {
