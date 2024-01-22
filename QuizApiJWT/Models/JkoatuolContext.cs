@@ -17,6 +17,8 @@ public partial class JkoatuolContext : DbContext
 
     public virtual DbSet<Question> Questions { get; set; }
 
+    public virtual DbSet<QuestionsOk> QuestionsOks { get; set; }
+
     public virtual DbSet<Userdatum> Userdata { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -51,6 +53,25 @@ public partial class JkoatuolContext : DbContext
         modelBuilder.Entity<Question>(entity =>
         {
             entity.HasKey(e => e.Sno).HasName("pk_no");
+
+            entity.Property(e => e.Sno).HasColumnName("SNo");
+            entity.Property(e => e.Answer).HasMaxLength(50);
+            entity.Property(e => e.Opt1).HasMaxLength(50);
+            entity.Property(e => e.Opt2).HasMaxLength(50);
+            entity.Property(e => e.Opt3).HasMaxLength(50);
+            entity.Property(e => e.Opt4).HasMaxLength(50);
+            entity.Property(e => e.QuestionTitle).HasMaxLength(500);
+            entity.Property(e => e.Solution)
+                .HasMaxLength(500)
+                .HasColumnName("solution");
+            entity.Property(e => e.Topic).HasMaxLength(500);
+        });
+
+        modelBuilder.Entity<QuestionsOk>(entity =>
+        {
+            entity.HasKey(e => e.Sno).HasName("pk_num");
+
+            entity.ToTable("QuestionsOK");
 
             entity.Property(e => e.Sno).HasColumnName("SNo");
             entity.Property(e => e.Answer).HasMaxLength(50);
