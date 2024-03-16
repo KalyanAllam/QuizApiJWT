@@ -19,6 +19,8 @@ public partial class JkoatuolContext : DbContext
 
     public virtual DbSet<QuestionsOk> QuestionsOks { get; set; }
 
+    public virtual DbSet<RateCard> RateCards { get; set; }
+
     public virtual DbSet<Userdatum> Userdata { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -84,6 +86,13 @@ public partial class JkoatuolContext : DbContext
                 .HasMaxLength(500)
                 .HasColumnName("solution");
             entity.Property(e => e.Topic).HasMaxLength(500);
+        });
+
+        modelBuilder.Entity<RateCard>(entity =>
+        {
+            entity.HasKey(e => e.No).HasName("pk_number");
+
+            entity.ToTable("RateCard");
         });
 
         modelBuilder.Entity<Userdatum>(entity =>
